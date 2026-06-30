@@ -1,7 +1,7 @@
 import {
     SiReact, SiTailwindcss, SiFirebase, SiNodedotjs,
     SiLaravel, SiPostgresql, SiJavascript, SiHtml5,
-    SiCss3, SiAndroidstudio, SiPython, SiXgboost, SiFigma
+    SiCss3, SiAndroidstudio, SiPython, SiScikitlearn, SiFigma
 } from 'react-icons/si'
 
 const technologies = [
@@ -16,7 +16,7 @@ const technologies = [
     { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
     { name: 'Android Studio', icon: SiAndroidstudio, color: '#3DDC84' },
     { name: 'Python', icon: SiPython, color: '#3776AB' },
-    { name: 'XGBoost', icon: SiXgboost, color: '#189AB4' },
+    { name: 'Scikit-learn', icon: SiScikitlearn, color: '#F7931E' },
     { name: 'Figma', icon: SiFigma, color: '#F24E1E' },
 ]
 
