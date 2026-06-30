@@ -1,7 +1,7 @@
 import {
     SiReact, SiTailwindcss, SiFirebase, SiNodedotjs,
     SiLaravel, SiPostgresql, SiJavascript, SiHtml5,
-    SiCss3, SiAndroidstudio, SiPython, SiScikitlearn, SiFigma
+    SiCss3, SiAndroid, SiPython, SiScikitlearn, SiFigma
 } from 'react-icons/si'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
@@ -15,7 +15,7 @@ const technologies = [
     { name: 'Laravel', icon: SiLaravel, color: '#FF2D20' },
     { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
     { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
-    { name: 'Android Studio', icon: SiAndroidstudio, color: '#3DDC84' },
+    { name: 'Android', icon: SiAndroid, color: '#3DDC84' },
     { name: 'Python', icon: SiPython, color: '#3776AB' },
     { name: 'Scikit-learn', icon: SiScikitlearn, color: '#F7931E' },
     { name: 'Figma', icon: SiFigma, color: '#F24E1E' },
