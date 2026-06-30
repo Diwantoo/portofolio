@@ -54,7 +54,7 @@ function Hero({ darkMode }) {
                         {/* Social Icons */}
                         <div className="flex justify-center md:justify-start gap-6 animate-slide-up delay-400">
                             <a
-                                href="https://github.com/cicakkayang123"
+                                href="https://github.com/Diwantoo"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={`p-3 rounded-xl ${darkMode ? 'bg-white/5 text-gray-300 hover:text-white hover:bg-white/10' : 'bg-gray-100 text-gray-600 hover:text-gray-900 hover:bg-gray-200'} transition-all hover:scale-110 hover:-translate-y-1`}

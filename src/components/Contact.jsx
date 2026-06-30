@@ -12,8 +12,8 @@ const contactLinks = [
     {
         icon: FaGithub,
         label: 'GitHub',
-        value: '@cicakkayang123',
-        href: 'https://github.com/cicakkayang123',
+        value: '@Diwantoo',
+        href: 'https://github.com/Diwantoo',
         color: 'from-gray-600 to-gray-800',
     },
     {
