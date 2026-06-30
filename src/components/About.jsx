@@ -112,7 +112,6 @@ function About({ darkMode }) {
                             </div>
                         </div>
                     ))}
-                    </div>
                 </div>
             </div>
         </section>
