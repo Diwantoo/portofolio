@@ -72,29 +72,46 @@ function About({ darkMode }) {
                         </div>
                     </div>
 
-                    {/* Right Column - Highlights */}
-                    <div className="space-y-6">
-                        {highlights.map((item, index) => (
-                            <div
-                                key={item.title}
-                                className={`p-6 rounded-2xl ${darkMode ? 'glass' : 'bg-white shadow-lg'} card-hover`}
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className={`p-3 rounded-xl ${darkMode ? 'bg-blue-500/20' : 'bg-blue-100'}`}>
-                                        <item.icon className={`w-6 h-6 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                                    </div>
-                                    <div>
-                                        <h4 className={`text-lg font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                            {item.title}
-                                        </h4>
-                                        <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                            {item.description}
-                                        </p>
-                                    </div>
+                    {/* Right Column - Photo */}
+                    <div className="flex justify-center">
+                        <div className="relative">
+                            {/* Glow */}
+                            <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500 to-orange-400 blur-2xl opacity-20 scale-110" />
+                            {/* Photo */}
+                            <div className="relative w-64 h-72 md:w-80 md:h-96 rounded-2xl p-1 bg-gradient-to-tr from-blue-500 to-orange-400">
+                                <img
+                                    src="/profile.jpeg"
+                                    alt="Nayendra Ajidiwanto Jaelani"
+                                    className="w-full h-full rounded-2xl object-cover object-top"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Highlights - Full Width Below */}
+                <div className="grid md:grid-cols-3 gap-6 mt-16">
+                    {highlights.map((item, index) => (
+                        <div
+                            key={item.title}
+                            className={`p-6 rounded-2xl ${darkMode ? 'glass' : 'bg-white shadow-lg'} card-hover`}
+                            style={{ animationDelay: `${index * 100}ms` }}
+                        >
+                            <div className="flex items-start gap-4">
+                                <div className={`p-3 rounded-xl ${darkMode ? 'bg-blue-500/20' : 'bg-blue-100'}`}>
+                                    <item.icon className={`w-6 h-6 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                                </div>
+                                <div>
+                                    <h4 className={`text-lg font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                                        {item.title}
+                                    </h4>
+                                    <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                        {item.description}
+                                    </p>
                                 </div>
                             </div>
-                        ))}
+                        </div>
+                    ))}
                     </div>
                 </div>
             </div>
