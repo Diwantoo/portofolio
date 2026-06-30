@@ -1,5 +1,6 @@
 import { FaGithub, FaInstagram, FaEnvelope } from 'react-icons/fa'
 import { HiMail, HiLocationMarker } from 'react-icons/hi'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 const contactLinks = [
     {
@@ -26,11 +27,17 @@ const contactLinks = [
 ]
 
 function Contact({ darkMode }) {
+    const header = useScrollAnimation()
+    const card = useScrollAnimation()
+
     return (
         <section id="contact" className={`py-24 ${darkMode ? 'bg-dark-200' : 'bg-gray-50'}`}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
-                <div className="text-center mb-16">
+                <div
+                    ref={header.ref}
+                    className={`text-center mb-16 reveal ${header.isVisible ? 'animate-slide-up' : ''}`}
+                >
                     <h2 className="section-title">Get In Touch</h2>
                     <p className="section-subtitle">
                         Have a project in mind or want to connect? Feel free to reach out!
@@ -38,7 +45,10 @@ function Contact({ darkMode }) {
                 </div>
 
                 {/* Contact Card */}
-                <div className={`p-8 md:p-12 rounded-3xl ${darkMode ? 'glass' : 'bg-white shadow-xl'} text-center`}>
+                <div
+                    ref={card.ref}
+                    className={`p-8 md:p-12 rounded-3xl ${darkMode ? 'glass' : 'bg-white shadow-xl'} text-center reveal ${card.isVisible ? 'animate-scale-in' : ''}`}
+                >
                     {/* Email CTA */}
                     <div className="mb-10">
                         <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 ${darkMode
@@ -73,7 +83,7 @@ function Contact({ darkMode }) {
 
                     {/* Social Links */}
                     <div className="flex flex-col md:flex-row justify-center gap-6">
-                        {contactLinks.map((link) => (
+                        {contactLinks.map((link, i) => (
                             <a
                                 key={link.label}
                                 href={link.href}
@@ -82,7 +92,8 @@ function Contact({ darkMode }) {
                                 className={`flex items-center gap-4 p-4 rounded-xl ${darkMode
                                     ? 'bg-white/5 hover:bg-white/10'
                                     : 'bg-gray-50 hover:bg-gray-100'
-                                    } transition-colors group hover:scale-[1.03] transform`}
+                                    } transition-all group hover:scale-[1.04] transform reveal ${card.isVisible ? 'animate-slide-up' : ''}`}
+                                style={{ animationDelay: `${200 + i * 100}ms` }}
                             >
                                 <div className={`p-3 rounded-xl bg-gradient-to-r ${link.color}`}>
                                     <link.icon className="w-5 h-5 text-white" />

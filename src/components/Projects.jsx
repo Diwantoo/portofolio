@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import ProjectCard from './ProjectCard'
 import { projects } from '../data/projects'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
-const categories = ['All', 'Web Application', 'UI/UX', 'Decision Support', 'Mobile App']
+const categories = ['All', 'Web Application', 'UI/UX', 'Decision Support', 'Mobile App', 'Machine Learning']
 
 function Projects({ darkMode }) {
     const [activeCategory, setActiveCategory] = useState('All')
+    const header = useScrollAnimation()
+    const filter = useScrollAnimation()
 
     const filteredProjects = activeCategory === 'All'
         ? projects
@@ -15,7 +18,10 @@ function Projects({ darkMode }) {
         <section id="projects" className={`py-24 ${darkMode ? 'bg-dark-200' : 'bg-gray-50'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
-                <div className="text-center mb-12">
+                <div
+                    ref={header.ref}
+                    className={`text-center mb-12 reveal ${header.isVisible ? 'animate-slide-up' : ''}`}
+                >
                     <h2 className="section-title">Featured Projects</h2>
                     <p className="section-subtitle">
                         A selection of projects I've worked on
@@ -23,7 +29,10 @@ function Projects({ darkMode }) {
                 </div>
 
                 {/* Category Filter */}
-                <div className="flex flex-wrap justify-center gap-3 mb-12">
+                <div
+                    ref={filter.ref}
+                    className={`flex flex-wrap justify-center gap-3 mb-12 reveal ${filter.isVisible ? 'animate-fade-in' : ''}`}
+                >
                     {categories.map((category) => (
                         <button
                             key={category}
@@ -42,11 +51,12 @@ function Projects({ darkMode }) {
 
                 {/* Projects Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredProjects.map((project) => (
+                    {filteredProjects.map((project, i) => (
                         <ProjectCard
                             key={project.id}
                             project={project}
                             darkMode={darkMode}
+                            index={i}
                         />
                     ))}
                 </div>

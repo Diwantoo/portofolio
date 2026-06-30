@@ -1,4 +1,5 @@
 import { HiCode, HiLightningBolt, HiPuzzle } from 'react-icons/hi'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
 const highlights = [
     {
@@ -19,11 +20,21 @@ const highlights = [
 ]
 
 function About({ darkMode }) {
+    const header = useScrollAnimation()
+    const leftCol = useScrollAnimation()
+    const rightCol = useScrollAnimation()
+    const h1 = useScrollAnimation()
+    const h2 = useScrollAnimation()
+    const h3 = useScrollAnimation()
+
     return (
         <section id="about" className={`py-24 ${darkMode ? 'bg-dark-200' : 'bg-gray-50'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
-                <div className="text-center mb-16">
+                <div
+                    ref={header.ref}
+                    className={`text-center mb-16 reveal ${header.isVisible ? 'animate-slide-up' : ''}`}
+                >
                     <h2 className="section-title">About Me</h2>
                     <p className="section-subtitle">
                         Get to know me better
@@ -33,7 +44,10 @@ function About({ darkMode }) {
                 {/* Two Column Layout */}
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     {/* Left Column - Text */}
-                    <div>
+                    <div
+                        ref={leftCol.ref}
+                        className={`reveal ${leftCol.isVisible ? 'animate-slide-left' : ''}`}
+                    >
                         <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                             Passionate Software Engineering Student
                         </h3>
@@ -63,8 +77,12 @@ function About({ darkMode }) {
                                 { number: '5+', label: 'Projects' },
                                 { number: '2+', label: 'Years Learning' },
                                 { number: '10+', label: 'Technologies' },
-                            ].map((stat) => (
-                                <div key={stat.label} className="text-center">
+                            ].map((stat, i) => (
+                                <div
+                                    key={stat.label}
+                                    className="text-center"
+                                    style={{ animationDelay: `${i * 100}ms` }}
+                                >
                                     <div className="text-3xl font-bold gradient-text">{stat.number}</div>
                                     <div className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>{stat.label}</div>
                                 </div>
@@ -73,7 +91,10 @@ function About({ darkMode }) {
                     </div>
 
                     {/* Right Column - Photo */}
-                    <div className="flex justify-center">
+                    <div
+                        ref={rightCol.ref}
+                        className={`flex justify-center reveal ${rightCol.isVisible ? 'animate-slide-right' : ''}`}
+                    >
                         <div className="relative">
                             {/* Glow */}
                             <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500 to-orange-400 blur-2xl opacity-20 scale-110" />
@@ -92,29 +113,36 @@ function About({ darkMode }) {
                 {/* Highlights - Full Width Below */}
                 <div className="grid md:grid-cols-3 gap-6 mt-16">
                     {highlights.map((item, index) => (
-                        <div
-                            key={item.title}
-                            className={`p-6 rounded-2xl ${darkMode ? 'glass' : 'bg-white shadow-lg'} card-hover`}
-                            style={{ animationDelay: `${index * 100}ms` }}
-                        >
-                            <div className="flex items-start gap-4">
-                                <div className={`p-3 rounded-xl ${darkMode ? 'bg-blue-500/20' : 'bg-blue-100'}`}>
-                                    <item.icon className={`w-6 h-6 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                                </div>
-                                <div>
-                                    <h4 className={`text-lg font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                        {item.title}
-                                    </h4>
-                                    <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                        {item.description}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                        <HighlightCard key={item.title} item={item} index={index} darkMode={darkMode} />
                     ))}
                 </div>
             </div>
         </section>
+    )
+}
+
+function HighlightCard({ item, index, darkMode }) {
+    const { ref, isVisible } = useScrollAnimation()
+    return (
+        <div
+            ref={ref}
+            className={`p-6 rounded-2xl ${darkMode ? 'glass' : 'bg-white shadow-lg'} card-hover reveal ${isVisible ? 'animate-scale-in' : ''}`}
+            style={{ animationDelay: `${index * 120}ms` }}
+        >
+            <div className="flex items-start gap-4">
+                <div className={`p-3 rounded-xl ${darkMode ? 'bg-blue-500/20' : 'bg-blue-100'}`}>
+                    <item.icon className={`w-6 h-6 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                </div>
+                <div>
+                    <h4 className={`text-lg font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                        {item.title}
+                    </h4>
+                    <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        {item.description}
+                    </p>
+                </div>
+            </div>
+        </div>
     )
 }
 

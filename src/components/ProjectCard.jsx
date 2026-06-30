@@ -1,8 +1,15 @@
 import { FaFolder, FaExternalLinkAlt } from 'react-icons/fa'
+import { useScrollAnimation } from '../hooks/useScrollAnimation'
 
-function ProjectCard({ project, darkMode }) {
+function ProjectCard({ project, darkMode, index = 0 }) {
+    const { ref, isVisible } = useScrollAnimation()
+
     return (
-        <div className={`group rounded-2xl overflow-hidden ${darkMode ? 'glass' : 'bg-white shadow-lg'} card-hover`}>
+        <div
+            ref={ref}
+            className={`group rounded-2xl overflow-hidden ${darkMode ? 'glass' : 'bg-white shadow-lg'} card-hover reveal ${isVisible ? 'animate-scale-in' : ''}`}
+            style={{ animationDelay: `${index * 100}ms` }}
+        >
             {/* Project Image Placeholder */}
             <div className={`h-48 ${darkMode ? 'bg-gradient-to-br from-blue-600/30 to-orange-500/30' : 'bg-gradient-to-br from-blue-100 to-orange-100'} relative overflow-hidden`}>
                 <div className="absolute inset-0 flex items-center justify-center">
