@@ -69,4 +69,14 @@ export const projects = [
         github: 'https://drive.google.com/drive/folders/1rejo88EXbfyfrbn0OpK06zuYVUkByeds?usp=drive_link',
         demo: '',
     },
+    {
+        id: 8,
+        name: 'ChurnSense',
+        description: 'An end-to-end machine learning project to predict customer churn probability using XGBoost, adaptive NLP sentiment analysis, and a professional SaaS-style interactive dashboard for real-time and batch predictions.',
+        tech: ['Python', 'XGBoost', 'NLP', 'Machine Learning'],
+        category: 'Machine Learning',
+        role: 'Machine Learning Engineer',
+        github: 'https://github.com/folksheesh/Churn-Prediction',
+        demo: 'https://drive.google.com/drive/folders/1dgZyD2NERdy1mlDOx82Lk_NudKDI_mdm?usp=sharing',
+    },
 ]
