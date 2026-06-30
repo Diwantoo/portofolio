@@ -77,6 +77,16 @@ export const projects = [
         category: 'Machine Learning',
         role: 'Machine Learning Engineer',
         github: 'https://github.com/folksheesh/Churn-Prediction',
-        demo: 'https://drive.google.com/drive/folders/1dgZyD2NERdy1mlDOx82Lk_NudKDI_mdm?usp=sharing',
+        demo: 'https://churnsense.sbs/expo-demo',
+    },
+    {
+        id: 9,
+        name: 'ChurnSense Web',
+        description: 'A professional SaaS-style web application for ChurnSense — featuring an interactive dashboard to monitor model performance, analyze customer profiles, and perform real-time churn predictions.',
+        tech: ['React', 'Tailwind CSS', 'Python', 'Machine Learning'],
+        category: 'Web Application',
+        role: 'Full Stack Developer',
+        github: 'https://github.com/folksheesh/Churn-Prediction',
+        demo: 'https://churnsense.sbs/',
     },
 ]
