@@ -19,39 +19,41 @@ const highlights = [
     },
 ]
 
+const anim = (visible, delay = 0, type = 'up') => ({
+    opacity: visible ? 1 : 0,
+    transform: visible
+        ? 'translateY(0) translateX(0) scale(1)'
+        : type === 'left'
+            ? 'translateX(-40px)'
+            : type === 'right'
+                ? 'translateX(40px)'
+                : type === 'scale'
+                    ? 'scale(0.85)'
+                    : 'translateY(30px)',
+    transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+})
+
 function About({ darkMode }) {
     const header = useScrollAnimation()
     const leftCol = useScrollAnimation()
     const rightCol = useScrollAnimation()
-    const h1 = useScrollAnimation()
-    const h2 = useScrollAnimation()
-    const h3 = useScrollAnimation()
 
     return (
         <section id="about" className={`py-24 ${darkMode ? 'bg-dark-200' : 'bg-gray-50'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
-                <div
-                    ref={header.ref}
-                    className={`text-center mb-16 reveal ${header.isVisible ? 'animate-slide-up' : ''}`}
-                >
+                <div ref={header.ref} style={anim(header.isVisible)} className="text-center mb-16">
                     <h2 className="section-title">About Me</h2>
-                    <p className="section-subtitle">
-                        Get to know me better
-                    </p>
+                    <p className="section-subtitle">Get to know me better</p>
                 </div>
 
                 {/* Two Column Layout */}
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     {/* Left Column - Text */}
-                    <div
-                        ref={leftCol.ref}
-                        className={`reveal ${leftCol.isVisible ? 'animate-slide-left' : ''}`}
-                    >
+                    <div ref={leftCol.ref} style={anim(leftCol.isVisible, 0, 'left')}>
                         <h3 className={`text-2xl font-bold mb-6 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                             Passionate Software Engineering Student
                         </h3>
-
                         <div className={`space-y-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'} leading-relaxed`}>
                             <p>
                                 I'm <span className="font-semibold text-blue-400">Nayendra Ajidiwanto Jaelani</span>,
@@ -70,19 +72,14 @@ function About({ darkMode }) {
                                 updated with industry best practices.
                             </p>
                         </div>
-
                         {/* Stats */}
                         <div className="grid grid-cols-3 gap-6 mt-8">
                             {[
                                 { number: '5+', label: 'Projects' },
                                 { number: '2+', label: 'Years Learning' },
                                 { number: '10+', label: 'Technologies' },
-                            ].map((stat, i) => (
-                                <div
-                                    key={stat.label}
-                                    className="text-center"
-                                    style={{ animationDelay: `${i * 100}ms` }}
-                                >
+                            ].map((stat) => (
+                                <div key={stat.label} className="text-center">
                                     <div className="text-3xl font-bold gradient-text">{stat.number}</div>
                                     <div className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>{stat.label}</div>
                                 </div>
@@ -91,14 +88,9 @@ function About({ darkMode }) {
                     </div>
 
                     {/* Right Column - Photo */}
-                    <div
-                        ref={rightCol.ref}
-                        className={`flex justify-center reveal ${rightCol.isVisible ? 'animate-slide-right' : ''}`}
-                    >
+                    <div ref={rightCol.ref} style={anim(rightCol.isVisible, 100, 'right')} className="flex justify-center">
                         <div className="relative">
-                            {/* Glow */}
                             <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500 to-orange-400 blur-2xl opacity-20 scale-110" />
-                            {/* Photo */}
                             <div className="relative w-64 h-72 md:w-80 md:h-96 rounded-2xl p-1 bg-gradient-to-tr from-blue-500 to-orange-400">
                                 <img
                                     src="/profile.jpeg"
@@ -110,7 +102,7 @@ function About({ darkMode }) {
                     </div>
                 </div>
 
-                {/* Highlights - Full Width Below */}
+                {/* Highlights */}
                 <div className="grid md:grid-cols-3 gap-6 mt-16">
                     {highlights.map((item, index) => (
                         <HighlightCard key={item.title} item={item} index={index} darkMode={darkMode} />
@@ -126,8 +118,8 @@ function HighlightCard({ item, index, darkMode }) {
     return (
         <div
             ref={ref}
-            className={`p-6 rounded-2xl ${darkMode ? 'glass' : 'bg-white shadow-lg'} card-hover reveal ${isVisible ? 'animate-scale-in' : ''}`}
-            style={{ animationDelay: `${index * 120}ms` }}
+            style={anim(isVisible, index * 120, 'scale')}
+            className={`p-6 rounded-2xl ${darkMode ? 'glass' : 'bg-white shadow-lg'} card-hover`}
         >
             <div className="flex items-start gap-4">
                 <div className={`p-3 rounded-xl ${darkMode ? 'bg-blue-500/20' : 'bg-blue-100'}`}>

@@ -21,19 +21,23 @@ const technologies = [
     { name: 'Figma', icon: SiFigma, color: '#F24E1E' },
 ]
 
-function TechItem({ tech, index }) {
+function TechItem({ tech, index, darkMode }) {
     const { ref, isVisible } = useScrollAnimation()
     return (
         <div
             ref={ref}
-            className={`group p-4 md:p-6 rounded-2xl card-hover flex flex-col items-center justify-center gap-3 hover:scale-105 transition-transform reveal ${isVisible ? 'animate-scale-in' : ''}`}
-            style={{ animationDelay: `${index * 60}ms` }}
+            className={`group p-4 md:p-6 rounded-2xl ${darkMode ? 'glass' : 'bg-gray-50 shadow-md'} card-hover flex flex-col items-center justify-center gap-3 hover:scale-105 transition-all`}
+            style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'scale(1)' : 'scale(0.85)',
+                transition: `opacity 0.5s ease ${index * 60}ms, transform 0.5s ease ${index * 60}ms`,
+            }}
         >
             <tech.icon
-                className="w-8 h-8 md:w-10 md:h-10 transition-all duration-300 group-hover:scale-110 group-hover:drop-shadow-lg"
+                className="w-8 h-8 md:w-10 md:h-10 transition-all duration-300 group-hover:scale-110"
                 style={{ color: tech.color }}
             />
-            <span className="text-xs md:text-sm font-medium text-center text-gray-300">
+            <span className={`text-xs md:text-sm font-medium text-center ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 {tech.name}
             </span>
         </div>
@@ -49,7 +53,12 @@ function TechStack({ darkMode }) {
                 {/* Section Header */}
                 <div
                     ref={header.ref}
-                    className={`text-center mb-16 reveal ${header.isVisible ? 'animate-slide-up' : ''}`}
+                    style={{
+                        opacity: header.isVisible ? 1 : 0,
+                        transform: header.isVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transition: 'opacity 0.6s ease, transform 0.6s ease',
+                    }}
+                    className="text-center mb-16"
                 >
                     <h2 className="section-title">Tech Stack</h2>
                     <p className="section-subtitle">
@@ -58,15 +67,9 @@ function TechStack({ darkMode }) {
                 </div>
 
                 {/* Tech Grid */}
-                <div className={`grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 md:gap-6`}>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 md:gap-6">
                     {technologies.map((tech, index) => (
-                        <div
-                            key={tech.name}
-                            className={`${darkMode ? 'glass' : 'bg-gray-50 shadow-md'}`}
-                            style={{ borderRadius: '1rem' }}
-                        >
-                            <TechItem tech={tech} index={index} darkMode={darkMode} />
-                        </div>
+                        <TechItem key={tech.name} tech={tech} index={index} darkMode={darkMode} />
                     ))}
                 </div>
             </div>

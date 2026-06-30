@@ -106,15 +106,3 @@ body {
 .delay-500 {
   animation-delay: 500ms;
 }
-
-/* ── Scroll-reveal base state ── */
-.reveal {
-  opacity: 0;
-  transition: opacity 0.01s; /* prevents FOUC */
-}
-
-.reveal.animate-slide-up   { animation: slideUp   0.65s ease-out forwards; }
-.reveal.animate-slide-left { animation: slideLeft 0.65s ease-out forwards; }
-.reveal.animate-slide-right{ animation: slideRight 0.65s ease-out forwards; }
-.reveal.animate-scale-in   { animation: scaleIn   0.55s ease-out forwards; }
-.reveal.animate-fade-in    { animation: fadeIn    0.65s ease-out forwards; }

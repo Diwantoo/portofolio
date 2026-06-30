@@ -36,7 +36,12 @@ function Contact({ darkMode }) {
                 {/* Section Header */}
                 <div
                     ref={header.ref}
-                    className={`text-center mb-16 reveal ${header.isVisible ? 'animate-slide-up' : ''}`}
+                    style={{
+                        opacity: header.isVisible ? 1 : 0,
+                        transform: header.isVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transition: 'opacity 0.6s ease, transform 0.6s ease',
+                    }}
+                    className="text-center mb-16"
                 >
                     <h2 className="section-title">Get In Touch</h2>
                     <p className="section-subtitle">
@@ -47,7 +52,12 @@ function Contact({ darkMode }) {
                 {/* Contact Card */}
                 <div
                     ref={card.ref}
-                    className={`p-8 md:p-12 rounded-3xl ${darkMode ? 'glass' : 'bg-white shadow-xl'} text-center reveal ${card.isVisible ? 'animate-scale-in' : ''}`}
+                    style={{
+                        opacity: card.isVisible ? 1 : 0,
+                        transform: card.isVisible ? 'scale(1)' : 'scale(0.95)',
+                        transition: 'opacity 0.6s ease, transform 0.6s ease',
+                    }}
+                    className={`p-8 md:p-12 rounded-3xl ${darkMode ? 'glass' : 'bg-white shadow-xl'} text-center`}
                 >
                     {/* Email CTA */}
                     <div className="mb-10">
@@ -57,16 +67,13 @@ function Contact({ darkMode }) {
                             } hover:scale-110 transition-transform`}>
                             <HiMail className="w-10 h-10 text-white" />
                         </div>
-
                         <h3 className={`text-2xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                             Let's Connect
                         </h3>
-
                         <p className={`mb-6 max-w-md mx-auto ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                             I'm always open to discussing new opportunities, interesting projects,
                             or just having a chat about technology and software development.
                         </p>
-
                         <a
                             href="https://mail.google.com/mail/?view=cm&to=nayendraaj19@gmail.com"
                             target="_blank"
@@ -89,22 +96,22 @@ function Contact({ darkMode }) {
                                 href={link.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                style={{
+                                    opacity: card.isVisible ? 1 : 0,
+                                    transform: card.isVisible ? 'translateY(0)' : 'translateY(20px)',
+                                    transition: `opacity 0.5s ease ${200 + i * 100}ms, transform 0.5s ease ${200 + i * 100}ms`,
+                                }}
                                 className={`flex items-center gap-4 p-4 rounded-xl ${darkMode
                                     ? 'bg-white/5 hover:bg-white/10'
                                     : 'bg-gray-50 hover:bg-gray-100'
-                                    } transition-all group hover:scale-[1.04] transform reveal ${card.isVisible ? 'animate-slide-up' : ''}`}
-                                style={{ animationDelay: `${200 + i * 100}ms` }}
+                                    } transition-colors group hover:scale-[1.04] transform`}
                             >
                                 <div className={`p-3 rounded-xl bg-gradient-to-r ${link.color}`}>
                                     <link.icon className="w-5 h-5 text-white" />
                                 </div>
                                 <div className="text-left">
-                                    <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                                        {link.label}
-                                    </div>
-                                    <div className={`font-medium ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>
-                                        {link.value}
-                                    </div>
+                                    <div className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{link.label}</div>
+                                    <div className={`font-medium ${darkMode ? 'text-gray-200' : 'text-gray-700'}`}>{link.value}</div>
                                 </div>
                             </a>
                         ))}
@@ -116,7 +123,6 @@ function Contact({ darkMode }) {
                         <span className="text-sm">Based in Indonesia</span>
                     </div>
                 </div>
-
             </div>
         </section>
     )
