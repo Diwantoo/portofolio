@@ -37,7 +37,7 @@ function App() {
       {/* Footer */}
       <footer className={`py-8 text-center ${darkMode ? 'bg-dark-400 text-gray-400' : 'bg-gray-100 text-gray-600'}`}>
         <p className="text-sm">
-          © {new Date().getFullYear()} Portfolio. Built with React & Tailwind CSS.
+          © {new Date().getFullYear()} Nayendra Ajidiwanto Jaelani
         </p>
       </footer>
     </div>
