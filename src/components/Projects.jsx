@@ -20,7 +20,12 @@ function Projects({ darkMode }) {
                 {/* Section Header */}
                 <div
                     ref={header.ref}
-                    className={`text-center mb-12 reveal ${header.isVisible ? 'animate-slide-up' : ''}`}
+                    style={{
+                        opacity: header.isVisible ? 1 : 0,
+                        transform: header.isVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transition: 'opacity 0.6s ease, transform 0.6s ease',
+                    }}
+                    className="text-center mb-12"
                 >
                     <h2 className="section-title">Featured Projects</h2>
                     <p className="section-subtitle">
@@ -31,7 +36,12 @@ function Projects({ darkMode }) {
                 {/* Category Filter */}
                 <div
                     ref={filter.ref}
-                    className={`flex flex-wrap justify-center gap-3 mb-12 reveal ${filter.isVisible ? 'animate-fade-in' : ''}`}
+                    style={{
+                        opacity: filter.isVisible ? 1 : 0,
+                        transform: filter.isVisible ? 'translateY(0)' : 'translateY(20px)',
+                        transition: 'opacity 0.5s ease 100ms, transform 0.5s ease 100ms',
+                    }}
+                    className="flex flex-wrap justify-center gap-3 mb-12"
                 >
                     {categories.map((category) => (
                         <button
