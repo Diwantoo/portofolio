@@ -120,7 +120,7 @@ function Contact({ darkMode }) {
                     {/* Location */}
                     <div className={`mt-10 flex items-center justify-center gap-2 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
                         <HiLocationMarker />
-                        <span className="text-sm">Based in Indonesia</span>
+                        <span className="text-sm">Based in Bogor, Indonesia</span>
                     </div>
                 </div>
             </div>
